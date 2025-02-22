@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { circInOut, easeInOut, motion } from 'framer-motion';
+
 
 export default function App() {
   const [login, setLogin] = useState('');
@@ -15,6 +17,12 @@ export default function App() {
     });
 
     const data = await response.json();
+    handleAction(response.ok ? "Login" : "Register")
+    {response.ok &&  
+      setLogin('')    
+      setPassword('')
+    }
+
     setMessage(data.message);
   };
 
@@ -62,7 +70,11 @@ export default function App() {
             </div>
 
             <div className='buttons'>
-            <button onClick={handleLogin}>Login</button>
+            <motion.button onClick={handleLogin}
+            whileTap={{scale:0.9}}
+            transition={{duration:0.25, ease:"circInOut"}}
+            
+            >Login</motion.button>
             </div>
 
             <p onClick={()=>handleAction("Register")}>Sign in</p>
@@ -90,8 +102,11 @@ export default function App() {
               />
             </div>
             <div className='buttons'>
-            <button onClick={() => { handleAction("Login"); handleRegister(); }} className='button'>Register</button>
-
+            <motion.button onClick={handleRegister}
+            whileTap={{scale:0.9}}
+            transition={{duration:0.25, ease:"circInOut"}}
+            
+            >Register</motion.button>
           </div>
           </div>
           {message && <p className='Message'>{message}</p>}
