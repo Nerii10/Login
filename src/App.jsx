@@ -44,8 +44,9 @@ export default function App() {
 
   return (
     <>
-   
     <div style={{position:"absolute",top:"5%",width:"80%",textAlign:"center",}}> <p>do not register with your real password</p></div>
+    <div className='circle'></div>
+
     <div className='wrapper'>
       <div className='container'>
           <div className='login' style={{display:(Action=="Login" ? "flex" : "none")}}>
